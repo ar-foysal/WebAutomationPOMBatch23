@@ -1,11 +1,15 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static utilities.BrowserSetup.getBrowser;
 
 public class BasePage {
+
     public WebElement getElement(By locator){
         return getBrowser().findElement(locator);
     }
@@ -16,10 +20,19 @@ public class BasePage {
     }
 
     public Boolean displayStatus(By locator){
-        return getElement(locator).isDisplayed();
+        try {
+            return getElement(locator).isDisplayed();
+        }catch (NoSuchElementException e){
+            return false;
+        }
     }
 
     public void clickOnElement(By locator){
         getElement(locator).click();
+    }
+
+    public Alert getAlert(){
+        WebDriverWait wait = new WebDriverWait(getBrowser(), Duration.ofSeconds(5));
+        return wait.until(ExpectedConditions.alertIsPresent());
     }
 }
