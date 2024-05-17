@@ -14,8 +14,8 @@
                     <include name="testLoginWithValidCredentials"/>
                     <include name="testLoginWithInvalidPassword"/>
                     <exclude name="testLoginWithInvalidEmail"/>
-                    <include name="testLoginWithoutPassword"/>
-                    <include name="testLoginWithoutEmail"/>
+                    <exclude name="testLoginWithoutPassword"/>
+                    <exclude name="testLoginWithoutEmail"/>
                     <exclude name="testLoginWithoutEmailAndPassword"/>
                     <exclude name="testLoginInvalidEmailAndPassword"/>
                     <exclude name="testLoginWithInvalidCredentials"/>

@@ -1,5 +1,9 @@
 package testcases;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -18,11 +22,18 @@ public class TestLogin extends BrowserSetup {
         homePage.clickOnElement(homePage.signInButton);
     }
 
-    @Test
+    @Test(priority = 0, description = " User log in with valid Credentials")
+    @Description(" Test Add using allure: User log in with valid Credentials")
+    @Epic("Web interface")
+    @Feature("Essential features")
+    @Story("Authentication")
     public void testLoginWithValidCredentials(){
+        signInPage.addScreenshot("Before add data");
         signInPage.writeOnElement(signInPage.emailInputBox, "xagopot780@deligy.com");
         signInPage.writeOnElement(signInPage.passwordInputBox, "123456aa");
+        signInPage.addScreenshot("After add data");
         signInPage.clickOnElement(signInPage.logInButton);
+        signInPage.addScreenshot("After login");
         Assert.assertTrue(homePage.displayStatus(homePage.logoutButton));
     }
 
@@ -31,6 +42,7 @@ public class TestLogin extends BrowserSetup {
         signInPage.writeOnElement(signInPage.emailInputBox, "xagopot780@deligy.com");
         signInPage.writeOnElement(signInPage.passwordInputBox, "123456");
         signInPage.clickOnElement(signInPage.logInButton);
+        signInPage.addScreenshot("After tapped on login button");
         Assert.assertEquals(signInPage.getElement(signInPage.errorMsg).getText(), "Your email or password is incorrect!");
         Assert.assertFalse(homePage.displayStatus(homePage.logoutButton));
     }
